@@ -12,7 +12,14 @@ import Dashboard from './pages/Dashboard';
 import BusinessDetail from './pages/BusinessDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (

@@ -11,12 +11,21 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use('/uploads', express.static('uploads'));
 
 // Root route
 app.get('/', (req, res) => {
-  res.json({ message: 'Gethings API is running', status: 'OK' });
+  res.json({ 
+    message: 'Gethings API is running', 
+    status: 'OK',
+    endpoints: ['/api/auth', '/api/businesses', '/api/messages']
+  });
+});
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
 // Routes
@@ -24,32 +33,42 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/businesses', require('./routes/businesses'));
 app.use('/api/messages', require('./routes/messages'));
 
-// MongoDB connection with error handling
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
+});
+
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
+
+// Database connection and seeding
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gethings');
-    console.log('Connected to MongoDB');
+    console.log('✅ Connected to MongoDB');
     await seedDatabase();
   } catch (error) {
-    console.error('MongoDB connection error:', error);
+    console.error('❌ MongoDB connection error:', error);
     process.exit(1);
   }
 };
 
-// Seed database with sample data
 const seedDatabase = async () => {
   try {
     const count = await Business.countDocuments();
-    console.log(`Found ${count} existing businesses`);
+    console.log(`📊 Found ${count} existing businesses`);
     
     if (count === 0) {
-      console.log('Seeding database with sample businesses...');
+      console.log('🌱 Seeding database with sample businesses...');
       await Business.insertMany(sampleBusinesses);
       const newCount = await Business.countDocuments();
-      console.log(`Database seeded with ${newCount} businesses`);
+      console.log(`✅ Database seeded with ${newCount} businesses`);
     }
   } catch (error) {
-    console.error('Database seeding error:', error);
+    console.error('❌ Database seeding error:', error);
   }
 };
 
@@ -57,5 +76,6 @@ connectDB();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📍 API available at http://localhost:${PORT}`);
 });

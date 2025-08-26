@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { colors } from '../styles/GlobalStyle';
 import BusinessForm from '../components/BusinessForm';
 
-const DashboardContainer = styled.div`
+const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 20px;
@@ -15,6 +15,7 @@ const DashboardContainer = styled.div`
 
 const Header = styled.div`
   margin-bottom: 3rem;
+  text-align: center;
 
   h1 {
     font-size: 2.5rem;
@@ -30,13 +31,14 @@ const Header = styled.div`
 
 const TabContainer = styled.div`
   display: flex;
+  justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   border-bottom: 2px solid #eee;
 `;
 
 const Tab = styled.button<{ active: boolean }>`
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
   background: none;
   border: none;
   font-weight: 500;
@@ -46,6 +48,7 @@ const Tab = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
 
   &:hover {
     color: ${colors.primary};
@@ -57,12 +60,11 @@ const Section = styled.div`
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  margin-bottom: 2rem;
 `;
 
 const SectionHeader = styled.div`
   display: flex;
-  justify-content: between;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
 
@@ -71,6 +73,7 @@ const SectionHeader = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin: 0;
   }
 `;
 
@@ -79,11 +82,12 @@ const AddButton = styled.button`
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
+  border: none;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: auto;
+  cursor: pointer;
   transition: background 0.3s ease;
 
   &:hover {
@@ -91,13 +95,13 @@ const AddButton = styled.button`
   }
 `;
 
-const BusinessGrid = styled.div`
+const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 `;
 
-const BusinessCard = styled.div`
+const Card = styled.div`
   border: 2px solid #eee;
   border-radius: 12px;
   overflow: hidden;
@@ -109,18 +113,19 @@ const BusinessCard = styled.div`
   }
 `;
 
-const BusinessImage = styled.img`
+const CardImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
 `;
 
-const BusinessContent = styled.div`
+const CardContent = styled.div`
   padding: 1.5rem;
 
   h3 {
     color: ${colors.dark};
     margin-bottom: 0.5rem;
+    font-size: 1.2rem;
   }
 
   p {
@@ -131,22 +136,29 @@ const BusinessContent = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .location {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
 `;
 
-const BusinessActions = styled.div`
+const CardActions = styled.div`
   display: flex;
   gap: 0.5rem;
-  margin-top: 1rem;
 `;
 
 const ActionButton = styled.button<{ variant?: 'danger' }>`
   padding: 0.5rem 1rem;
   border-radius: 6px;
+  border: none;
   font-size: 0.875rem;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  cursor: pointer;
   transition: all 0.3s ease;
   
   ${props => props.variant === 'danger' ? `
@@ -171,6 +183,13 @@ const MessageCard = styled.div<{ read: boolean }>`
   border: 2px solid ${props => props.read ? '#eee' : colors.primary};
   border-radius: 8px;
   background: ${props => props.read ? 'white' : '#f8f9ff'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
 
   .header {
     display: flex;
@@ -183,6 +202,7 @@ const MessageCard = styled.div<{ read: boolean }>`
     font-weight: 600;
     color: ${colors.dark};
     margin-bottom: 0.25rem;
+    font-size: 1.1rem;
   }
 
   .from {
@@ -203,12 +223,17 @@ const MessageCard = styled.div<{ read: boolean }>`
 
 const EmptyState = styled.div`
   text-align: center;
-  padding: 3rem;
+  padding: 4rem;
   color: #666;
 
   svg {
     margin-bottom: 1rem;
     color: #ccc;
+  }
+
+  h3 {
+    margin-bottom: 0.5rem;
+    color: ${colors.dark};
   }
 `;
 
@@ -239,17 +264,17 @@ const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState(user?.role === 'vendor' ? 'businesses' : 'messages');
   const [showBusinessForm, setShowBusinessForm] = useState(false);
-  const [editingBusiness, setEditingBusiness] = useState(null);
+  const [editingBusiness, setEditingBusiness] = useState<any>(null);
   
   const queryClient = useQueryClient();
 
-  const { data: businesses, isLoading: businessesLoading } = useQuery({
+  const { data: businesses = [], isLoading: businessesLoading } = useQuery({
     queryKey: ['vendor-businesses'],
     queryFn: businessAPI.getVendorBusinesses,
     enabled: user?.role === 'vendor',
   });
 
-  const { data: messages, isLoading: messagesLoading } = useQuery({
+  const { data: messages = [], isLoading: messagesLoading } = useQuery({
     queryKey: ['messages'],
     queryFn: () => messageAPI.getMessages('received'),
   });
@@ -289,7 +314,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <DashboardContainer>
+    <Container>
       <Header>
         <h1>Welcome back, {user?.name}!</h1>
         <p>
@@ -334,24 +359,24 @@ const Dashboard: React.FC = () => {
 
           {businessesLoading ? (
             <div>Loading businesses...</div>
-          ) : (businesses && businesses.length > 0) ? (
-            <BusinessGrid>
+          ) : businesses.length > 0 ? (
+            <Grid>
               {businesses.map((business: any) => (
-                <BusinessCard key={business._id}>
-                  <BusinessImage 
+                <Card key={business._id}>
+                  <CardImage 
                     src={business.image || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400'} 
                     alt={business.name}
                     onError={(e) => {
                       e.currentTarget.src = 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400';
                     }}
                   />
-                  <BusinessContent>
+                  <CardContent>
                     <h3>{business.name}</h3>
                     <p>{business.description}</p>
-                    <div style={{ fontSize: '0.9rem', color: '#666' }}>
+                    <div className="location">
                       {business.location.city}, {business.location.postcode}
                     </div>
-                    <BusinessActions>
+                    <CardActions>
                       <ActionButton onClick={() => handleEditBusiness(business)}>
                         <Edit size={14} />
                         Edit
@@ -363,11 +388,11 @@ const Dashboard: React.FC = () => {
                         <Trash2 size={14} />
                         Delete
                       </ActionButton>
-                    </BusinessActions>
-                  </BusinessContent>
-                </BusinessCard>
+                    </CardActions>
+                  </CardContent>
+                </Card>
               ))}
-            </BusinessGrid>
+            </Grid>
           ) : (
             <EmptyState>
               <Store size={48} />
@@ -389,7 +414,7 @@ const Dashboard: React.FC = () => {
 
           {messagesLoading ? (
             <div>Loading messages...</div>
-          ) : (messages && messages.length > 0) ? (
+          ) : messages.length > 0 ? (
             <MessageList>
               {messages.map((message: any) => (
                 <MessageCard 
@@ -433,7 +458,7 @@ const Dashboard: React.FC = () => {
           />
         </ModalContent>
       </Modal>
-    </DashboardContainer>
+    </Container>
   );
 };
 
