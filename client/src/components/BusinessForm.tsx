@@ -248,7 +248,7 @@ const BusinessForm: React.FC<BusinessFormProps> = ({ business, onClose, onSucces
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: FormData }) => 
+    mutationFn: ({ id, data }: { id: string; data: any }) => 
       businessAPI.updateBusiness(id, data),
     onSuccess: () => {
       onSuccess();
