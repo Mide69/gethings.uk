@@ -334,7 +334,7 @@ const Dashboard: React.FC = () => {
 
           {businessesLoading ? (
             <div>Loading businesses...</div>
-          ) : businesses && businesses.length > 0 ? (
+          ) : (businesses && businesses.length > 0) ? (
             <BusinessGrid>
               {businesses.map((business: any) => (
                 <BusinessCard key={business._id}>
@@ -389,7 +389,7 @@ const Dashboard: React.FC = () => {
 
           {messagesLoading ? (
             <div>Loading messages...</div>
-          ) : messages && messages.length > 0 ? (
+          ) : (messages && messages.length > 0) ? (
             <MessageList>
               {messages.map((message: any) => (
                 <MessageCard 
