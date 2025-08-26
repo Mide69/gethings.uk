@@ -1,18 +1,17 @@
 {
   "name": "gethings-uk",
   "version": "1.0.0",
-  "description": "Platform for African vendors in the UK",
-  "main": "server/index.js",
+  "description": "African Business Directory UK - Simple Static Website",
+  "main": "index.html",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd server && npm run dev",
-    "client": "cd client && npm start",
-    "build": "cd client && npm run build",
-    "start": "cd server && npm start",
-    "install-deps": "npm install && cd server && npm install && cd ../client && npm install",
-    "vercel-build": "cd client && npm install && npm run build"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step needed for static site'"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
