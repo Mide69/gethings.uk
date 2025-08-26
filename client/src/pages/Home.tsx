@@ -264,7 +264,7 @@ const Home: React.FC = () => {
               <p>Discover our handpicked selection of exceptional African businesses</p>
             </SectionHeader>
             <BusinessGrid>
-              {featuredData.businesses.map((business) => (
+              {featuredData.businesses.map((business: any) => (
                 <BusinessCard key={business._id} business={business} />
               ))}
             </BusinessGrid>
@@ -294,7 +294,7 @@ const Home: React.FC = () => {
           ) : (
             <>
               <BusinessGrid>
-                {data?.businesses?.map((business) => (
+                {data?.businesses?.map((business: any) => (
                   <BusinessCard key={business._id} business={business} />
                 ))}
               </BusinessGrid>
