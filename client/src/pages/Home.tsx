@@ -9,7 +9,10 @@ import BusinessCard from '../components/BusinessCard';
 import SearchFilters from '../components/SearchFilters';
 
 const HeroSection = styled.section`
-  background: linear-gradient(135deg, ${colors.primary} 0%, #1e7e1e 100%);
+  background: linear-gradient(rgba(34, 139, 34, 0.8), rgba(30, 126, 30, 0.8)), url('https://res.cloudinary.com/faksam-soft/image/upload/v1756227014/tektribe/ankara_bc63bt.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: white;
   padding: 4rem 0;
   text-align: center;
