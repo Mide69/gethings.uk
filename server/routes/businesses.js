@@ -71,7 +71,13 @@ router.get('/', async (req, res) => {
       total
     });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Business route error:', error);
+    res.status(500).json({ 
+      message: 'Database connection error', 
+      error: error.message,
+      businesses: [],
+      total: 0
+    });
   }
 });
 

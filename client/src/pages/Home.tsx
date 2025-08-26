@@ -212,7 +212,19 @@ const Home: React.FC = () => {
   ) || [];
 
   if (error) {
-    return <ErrorMessage>Unable to load businesses. Please try again later.</ErrorMessage>;
+    return (
+      <Section>
+        <Container>
+          <ErrorMessage>
+            Unable to load businesses. Please ensure the server is running on port 5000.
+            <br />
+            <button onClick={() => window.location.reload()} style={{ marginTop: '1rem', padding: '0.5rem 1rem', background: colors.primary, color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+              Retry
+            </button>
+          </ErrorMessage>
+        </Container>
+      </Section>
+    );
   }
 
   return (
