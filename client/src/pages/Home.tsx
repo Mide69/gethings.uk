@@ -182,7 +182,12 @@ const Home: React.FC = () => {
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['businesses', filters],
-    queryFn: () => businessAPI.getBusinesses(filters),
+    queryFn: () => {
+      console.log('Fetching businesses with filters:', filters);
+      return businessAPI.getBusinesses(filters);
+    },
+    retry: 3,
+    retryDelay: 1000,
   });
 
   const { data: featuredData } = useQuery({
@@ -212,7 +217,8 @@ const Home: React.FC = () => {
   }, []);
 
   if (error) {
-    return <div>Error loading businesses</div>;
+    console.error('Error loading businesses:', error);
+    return <div>Error loading businesses: {error.message}</div>;
   }
 
   return (

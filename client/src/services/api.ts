@@ -37,15 +37,22 @@ export const authAPI = {
 // Business API
 export const businessAPI = {
   getBusinesses: async (filters: BusinessFilters = {}) => {
-    const params = new URLSearchParams();
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
-        params.append(key, value.toString());
-      }
-    });
-    
-    const response = await api.get(`/businesses?${params.toString()}`);
-    return response.data;
+    try {
+      const params = new URLSearchParams();
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') {
+          params.append(key, value.toString());
+        }
+      });
+      
+      console.log('API call to:', `/businesses?${params.toString()}`);
+      const response = await api.get(`/businesses?${params.toString()}`);
+      console.log('API response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('API Error:', error);
+      throw error;
+    }
   },
 
   getBusiness: async (id: string): Promise<Business> => {
