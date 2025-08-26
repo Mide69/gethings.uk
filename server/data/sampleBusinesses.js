@@ -168,7 +168,21 @@ const sampleBusinesses = [
   { name: "Maseru Blanket Company", description: "Traditional Basotho blankets and mountain kingdom textiles", category: "Fashion & Clothing", location: { city: "London", postcode: "SE5 0RJ" }, contact: { phone: "020 8901 2345" }, image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400", country: "Lesotho" },
 
   // Swazi Businesses
-  { name: "Mbabane Craft Market", description: "Swazi traditional crafts, wood carvings, and cultural artifacts", category: "Arts & Crafts", location: { city: "London", postcode: "W2 4RH" }, contact: { phone: "020 8012 3456" }, image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400", country: "Eswatini" }
+  { name: "Mbabane Craft Market", description: "Swazi traditional crafts, wood carvings, and cultural artifacts", category: "Arts & Crafts", location: { city: "London", postcode: "W2 4RH" }, contact: { phone: "020 8012 3456" }, image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400", country: "Eswatini" },
+
+  // Additional Nigerian Businesses
+  { name: "Abuja Tech Solutions", description: "Software development and IT consulting services", category: "Technology", location: { city: "London", postcode: "EC1A 4HD" }, contact: { phone: "020 7111 2222", website: "www.abujatech.co.uk" }, image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400", country: "Nigeria" },
+  { name: "Yoruba Language School", description: "Yoruba language classes and Nigerian cultural education", category: "Education & Culture", location: { city: "Birmingham", postcode: "B12 8QH" }, contact: { phone: "0121 333 4444" }, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", country: "Nigeria" },
+  { name: "Igbo Arts Gallery", description: "Traditional Igbo art, masks, and contemporary Nigerian artwork", category: "Arts & Crafts", location: { city: "Manchester", postcode: "M11 3EE" }, contact: { phone: "0161 555 6666" }, image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400", country: "Nigeria" },
+  { name: "Hausa Leather Works", description: "Traditional Nigerian leather goods, bags, and accessories", category: "Fashion & Clothing", location: { city: "Leeds", postcode: "LS4 2AB" }, contact: { phone: "0113 777 8888" }, image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400", country: "Nigeria" },
+  { name: "Nigerian Film Academy", description: "Nollywood film training and production services", category: "Entertainment", location: { city: "London", postcode: "W1T 1JH" }, contact: { phone: "020 7999 0000", website: "www.nollywoodacademy.co.uk" }, image: "https://images.unsplash.com/photo-1489599735734-79b4169c2a78?w=400", country: "Nigeria" },
+
+  // Additional Ghanaian Businesses
+  { name: "Akan Drumming Circle", description: "Traditional Ghanaian drumming lessons and performances", category: "Music & Instruments", location: { city: "London", postcode: "SE8 4RG" }, contact: { phone: "020 8111 2222" }, image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400", country: "Ghana" },
+  { name: "Twi Language Center", description: "Twi language classes and Ghanaian cultural programs", category: "Education & Culture", location: { city: "Birmingham", postcode: "B13 9RT" }, contact: { phone: "0121 333 5555" }, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", country: "Ghana" },
+  { name: "Adinkra Symbol Art", description: "Traditional Adinkra symbols, prints, and Ghanaian art", category: "Arts & Crafts", location: { city: "Manchester", postcode: "M12 6HH" }, contact: { phone: "0161 666 7777" }, image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400", country: "Ghana" },
+  { name: "Shea Butter Beauty", description: "Natural Ghanaian shea butter products and skincare", category: "Beauty & Personal Care", location: { city: "Liverpool", postcode: "L2 8JK" }, contact: { phone: "0151 888 9999" }, image: "https://images.unsplash.com/photo-1585435557343-3b092031d4c1?w=400", country: "Ghana" },
+  { name: "Highlife Music Studio", description: "Ghanaian highlife music recording and production", category: "Music & Entertainment", location: { city: "London", postcode: "N8 7PL" }, contact: { phone: "020 8000 1111" }, image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400", country: "Ghana" }
 ];
 
 module.exports = sampleBusinesses;

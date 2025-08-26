@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const Business = require('./models/Business');
+const sampleBusinesses = require('./data/sampleBusinesses');
 
 dotenv.config();
 
@@ -17,30 +19,36 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/businesses', require('./routes/businesses'));
 app.use('/api/messages', require('./routes/messages'));
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gethings', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-  seedDatabase();
-});
+// MongoDB connection with error handling
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gethings');
+    console.log('Connected to MongoDB');
+    await seedDatabase();
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
 
 // Seed database with sample data
 const seedDatabase = async () => {
-  const Business = require('./models/Business');
-  const count = await Business.countDocuments();
-  
-  if (count === 0) {
-    const sampleBusinesses = require('./data/sampleBusinesses');
-    await Business.insertMany(sampleBusinesses);
-    console.log('Database seeded with sample businesses');
+  try {
+    const count = await Business.countDocuments();
+    console.log(`Found ${count} existing businesses`);
+    
+    if (count === 0) {
+      console.log('Seeding database with sample businesses...');
+      await Business.insertMany(sampleBusinesses);
+      const newCount = await Business.countDocuments();
+      console.log(`Database seeded with ${newCount} businesses`);
+    }
+  } catch (error) {
+    console.error('Database seeding error:', error);
   }
 };
+
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
