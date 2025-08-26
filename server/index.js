@@ -47,12 +47,14 @@ app.use('*', (req, res) => {
 // Database connection and seeding
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/gethings');
+    const mongoUri = process.env.MONGODB_URI || 'mongodb+srv://demo:demo123@cluster0.mongodb.net/gethings?retryWrites=true&w=majority';
+    await mongoose.connect(mongoUri);
     console.log('✅ Connected to MongoDB');
     await seedDatabase();
   } catch (error) {
     console.error('❌ MongoDB connection error:', error);
-    process.exit(1);
+    console.log('⚠️  Running without database - API will have limited functionality');
+    // Don't exit, continue without database
   }
 };
 

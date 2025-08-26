@@ -5,6 +5,7 @@ import { Crown, MapPin, Users, Search } from 'lucide-react';
 import { businessAPI } from '../services/api';
 import { colors } from '../styles/GlobalStyle';
 import BusinessCard from '../components/BusinessCard';
+import BusinessDirectory from '../components/BusinessDirectory';
 
 const HeroSection = styled.section`
   background: linear-gradient(rgba(34, 139, 34, 0.8), rgba(30, 126, 30, 0.8)), 
@@ -282,28 +283,31 @@ const Home: React.FC = () => {
         </Section>
       )}
 
-      <Section>
-        <Container>
-          <SectionHeader>
-            <h2>All Businesses</h2>
-            <p>Browse our complete directory of African businesses across the UK</p>
-          </SectionHeader>
-
-          {isLoading ? (
+      {isLoading ? (
+        <Section>
+          <Container>
             <LoadingSpinner />
-          ) : filteredBusinesses.length > 0 ? (
-            <BusinessGrid>
-              {filteredBusinesses.map((business: any) => (
-                <BusinessCard key={business._id} business={business} />
-              ))}
-            </BusinessGrid>
-          ) : (
+          </Container>
+        </Section>
+      ) : businesses?.businesses ? (
+        <BusinessDirectory
+          businesses={businesses.businesses}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          selectedCategory="All Categories"
+          onCategoryChange={() => {}}
+          selectedCity="All Cities"
+          onCityChange={() => {}}
+        />
+      ) : (
+        <Section>
+          <Container>
             <EmptyState>
-              {searchTerm ? 'No businesses found matching your search.' : 'No businesses available.'}
+              No businesses available.
             </EmptyState>
-          )}
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      )}
     </>
   );
 };
