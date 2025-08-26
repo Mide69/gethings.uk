@@ -70,6 +70,60 @@ const businesses = [
         featured: true
     },
     {
+        name: "Zanzibar Spice Market",
+        description: "Authentic Tanzanian spices, pilau mix, and East African seasonings",
+        category: "Grocery & Food",
+        city: "Birmingham",
+        postcode: "B7 5QG",
+        country: "Tanzania",
+        featured: true
+    },
+    {
+        name: "Kigali Tech Hub",
+        description: "Web development, mobile apps, and digital marketing services",
+        category: "Technology",
+        city: "London",
+        postcode: "E2 7DD",
+        country: "Rwanda",
+        featured: true
+    },
+    {
+        name: "Douala Fashion House",
+        description: "Cameroonian traditional wear, modern African fashion, and tailoring",
+        category: "Fashion & Clothing",
+        city: "London",
+        postcode: "SE4 1UZ",
+        country: "Cameroon",
+        featured: true
+    },
+    {
+        name: "Mogadishu Money Transfer",
+        description: "Fast and secure money transfer services to Somalia and East Africa",
+        category: "Financial Services",
+        city: "London",
+        postcode: "E1 4NS",
+        country: "Somalia",
+        featured: true
+    },
+    {
+        name: "Kampala Rolex Stand",
+        description: "Authentic Ugandan rolex (chapati rolls) and street food",
+        category: "Restaurant",
+        city: "London",
+        postcode: "E8 2DP",
+        country: "Uganda",
+        featured: true
+    },
+    {
+        name: "Harare Hair Extensions",
+        description: "Premium hair extensions, wigs, and African hair products",
+        category: "Beauty & Personal Care",
+        city: "London",
+        postcode: "SE15 2RZ",
+        country: "Zimbabwe",
+        featured: true
+    },
+    {
         name: "Banku & Tilapia Restaurant",
         description: "Traditional Ghanaian dishes including banku, tilapia, and kelewele",
         category: "Restaurant",
@@ -164,6 +218,42 @@ const businesses = [
         city: "London",
         postcode: "SW9 8EF",
         country: "Ghana"
+    },
+    {
+        name: "Dakar Drumming School",
+        description: "Traditional West African drumming lessons and cultural workshops",
+        category: "Education & Culture",
+        city: "London",
+        postcode: "SW2 1JF",
+        country: "Senegal",
+        featured: true
+    },
+    {
+        name: "Abidjan Chocolate",
+        description: "Premium Ivorian cocoa products and artisanal chocolates",
+        category: "Food & Beverage",
+        city: "London",
+        postcode: "W3 6UG",
+        country: "Ivory Coast",
+        featured: true
+    },
+    {
+        name: "Bamako Music Store",
+        description: "Traditional West African instruments, kora, djembe, and music lessons",
+        category: "Music & Instruments",
+        city: "London",
+        postcode: "N15 4ND",
+        country: "Mali",
+        featured: true
+    },
+    {
+        name: "Freetown Diamond Exchange",
+        description: "Ethical diamond trading and Sierra Leonean precious stones",
+        category: "Jewelry & Accessories",
+        city: "London",
+        postcode: "EC1V 2NX",
+        country: "Sierra Leone",
+        featured: true
     }
 ];
 
