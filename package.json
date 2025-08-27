@@ -1,17 +1,13 @@
 {
-  "name": "gethings-uk",
+  "name": "gethings-store",
   "version": "1.0.0",
-  "description": "African Business Directory UK - Simple Static Website",
-  "main": "index.html",
+  "description": "African Products E-commerce Store",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "build": "echo 'No build step needed for static site'"
+    "dev": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   }
 }

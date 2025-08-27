@@ -3,105 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gethings - African Business Directory UK</title>
+    <title>Gethings - African Products Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>Gethings</h1>
-                <p>African Business Directory UK</p>
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1>Gethings</h1>
+                    <span>African Products Store</span>
+                </div>
+                <div class="cart">
+                    <button class="cart-btn" onclick="toggleCart()">
+                        🛒 Cart (<span id="cartCount">0</span>)
+                    </button>
+                </div>
             </div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#businesses">Businesses</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
+        </div>
     </header>
 
     <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h2>Discover African Businesses Across the UK</h2>
-                <p>Connect with 100+ authentic African vendors, restaurants, and services</p>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search businesses, food, services...">
-                    <select id="cityFilter">
-                        <option value="">All Cities</option>
+        <section class="hero">
+            <div class="container">
+                <h2>Authentic African Products</h2>
+                <p>Discover premium foods, crafts, and beauty products from across Africa</p>
+            </div>
+        </section>
+
+        <section class="filters">
+            <div class="container">
+                <div class="filter-grid">
+                    <input type="text" id="searchInput" placeholder="Search products..." class="search-input">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="Food">Food & Spices</option>
+                        <option value="Fashion">Fashion & Textiles</option>
+                        <option value="Beauty">Beauty & Care</option>
+                        <option value="Jewelry">Jewelry</option>
+                        <option value="Art">Art & Crafts</option>
+                        <option value="Music">Music</option>
+                    </select>
+                    <select id="locationFilter" class="filter-select">
+                        <option value="all">All Locations</option>
                         <option value="London">London</option>
                         <option value="Manchester">Manchester</option>
                         <option value="Birmingham">Birmingham</option>
+                        <option value="Edinburgh">Edinburgh</option>
                         <option value="Leeds">Leeds</option>
-                        <option value="Glasgow">Glasgow</option>
+                        <option value="Cambridge">Cambridge</option>
+                        <option value="Sheffield">Sheffield</option>
                     </select>
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="Restaurant">Restaurant</option>
-                        <option value="Beauty & Personal Care">Beauty & Personal Care</option>
-                        <option value="Fashion & Clothing">Fashion & Clothing</option>
-                        <option value="Grocery & Food">Grocery & Food</option>
-                        <option value="Technology">Technology</option>
-                    </select>
-                    <button onclick="searchBusinesses()">Search</button>
                 </div>
             </div>
         </section>
 
-        <section id="businesses" class="businesses-section">
-            <h2>Featured Businesses</h2>
-            <div id="businessGrid" class="business-grid">
-                <!-- Businesses will be loaded here -->
-            </div>
-            <div id="loadingSpinner" class="loading">Loading businesses...</div>
-        </section>
-
-        <section id="about" class="about-section">
-            <div class="about-content">
-                <h2>About Gethings</h2>
-                <p>Gethings is the UK's premier directory for African businesses. We connect customers with authentic African vendors, restaurants, and services across the country.</p>
-                <div class="stats">
-                    <div class="stat">
-                        <h3>100+</h3>
-                        <p>African Businesses</p>
-                    </div>
-                    <div class="stat">
-                        <h3>50+</h3>
-                        <p>Countries Represented</p>
-                    </div>
-                    <div class="stat">
-                        <h3>20+</h3>
-                        <p>UK Cities</p>
-                    </div>
+        <section class="products">
+            <div class="container">
+                <div class="products-header">
+                    <h3>Products</h3>
+                    <span id="productCount">Loading...</span>
                 </div>
+                <div id="productGrid" class="product-grid"></div>
             </div>
         </section>
     </main>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Gethings</h3>
-                <p>Connecting African businesses with customers across the UK</p>
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Shopping Cart</h3>
+                <button onclick="toggleCart()" class="close-btn">&times;</button>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="#businesses">Businesses</a>
-                <a href="#about">About</a>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-total">
+                <strong>Total: £<span id="cartTotal">0.00</span></strong>
             </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Email: info@gethings.uk</p>
-                <p>Phone: +44 20 1234 5678</p>
-            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Gethings. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

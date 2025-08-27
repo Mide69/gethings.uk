@@ -1,26 +1,42 @@
 const express = require('express');
 const path = require('path');
+const products = require('./data/products');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files
 app.use(express.static(__dirname));
+app.use(express.json());
 
-// Route for the main page
+// Routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-    res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+app.get('/api/products', (req, res) => {
+    const { category, location, search } = req.query;
+    let filtered = products;
+    
+    if (category && category !== 'all') {
+        filtered = filtered.filter(p => p.category === category);
+    }
+    
+    if (location && location !== 'all') {
+        filtered = filtered.filter(p => p.location === location);
+    }
+    
+    if (search) {
+        const searchLower = search.toLowerCase();
+        filtered = filtered.filter(p => 
+            p.name.toLowerCase().includes(searchLower) ||
+            p.country.toLowerCase().includes(searchLower) ||
+            p.seller.toLowerCase().includes(searchLower)
+        );
+    }
+    
+    res.json(filtered);
 });
 
-// Start server
 app.listen(PORT, () => {
-    console.log(`🚀 Gethings website running on http://localhost:${PORT}`);
-    console.log(`📍 Open your browser and visit the URL above`);
+    console.log(`🛒 Gethings Store running on http://localhost:${PORT}`);
 });
-
-module.exports = app;

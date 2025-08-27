@@ -1,378 +1,164 @@
-// Sample business data
-const businesses = [
-    {
-        name: "Mama Ngozi's Kitchen",
-        description: "Authentic Nigerian cuisine with jollof rice, suya, and pepper soup",
-        category: "Restaurant",
-        city: "London",
-        postcode: "E1 6AN",
-        country: "Nigeria",
-        featured: true
-    },
-    {
-        name: "Accra Gold Jewelry",
-        description: "Handcrafted gold jewelry and traditional Ghanaian accessories",
-        category: "Jewelry & Accessories",
-        city: "London",
-        postcode: "N1 9AG",
-        country: "Ghana",
-        featured: true
-    },
-    {
-        name: "Nairobi Coffee Roasters",
-        description: "Premium Kenyan coffee beans, roasted fresh daily",
-        category: "Food & Beverage",
-        city: "Edinburgh",
-        postcode: "EH1 1YZ",
-        country: "Kenya",
-        featured: true
-    },
-    {
-        name: "Afrobeats Barber Shop",
-        description: "Professional haircuts and grooming services for the modern African man",
-        category: "Beauty & Personal Care",
-        city: "Manchester",
-        postcode: "M1 1AA",
-        country: "Nigeria"
-    },
-    {
-        name: "Lagos Fashion House",
-        description: "Traditional and contemporary African clothing, ankara fabrics, and custom tailoring",
-        category: "Fashion & Clothing",
-        city: "Birmingham",
-        postcode: "B1 1BB",
-        country: "Nigeria"
-    },
-    {
-        name: "Kumasi Kente Cloth",
-        description: "Authentic kente cloth, traditional fabrics, and African textiles",
-        category: "Fashion & Clothing",
-        city: "Manchester",
-        postcode: "M2 3WQ",
-        country: "Ghana"
-    },
-    {
-        name: "Addis Red Sea Restaurant",
-        description: "Traditional Ethiopian cuisine with injera, doro wat, and vegetarian options",
-        category: "Restaurant",
-        city: "London",
-        postcode: "SE5 8TR",
-        country: "Ethiopia",
-        featured: true
-    },
-    {
-        name: "Cape Town Braai House",
-        description: "South African BBQ, boerewors, biltong, and traditional braai experience",
-        category: "Restaurant",
-        city: "London",
-        postcode: "SW11 1HT",
-        country: "South Africa",
-        featured: true
-    },
-    {
-        name: "Zanzibar Spice Market",
-        description: "Authentic Tanzanian spices, pilau mix, and East African seasonings",
-        category: "Grocery & Food",
-        city: "Birmingham",
-        postcode: "B7 5QG",
-        country: "Tanzania",
-        featured: true
-    },
-    {
-        name: "Kigali Tech Hub",
-        description: "Web development, mobile apps, and digital marketing services",
-        category: "Technology",
-        city: "London",
-        postcode: "E2 7DD",
-        country: "Rwanda",
-        featured: true
-    },
-    {
-        name: "Douala Fashion House",
-        description: "Cameroonian traditional wear, modern African fashion, and tailoring",
-        category: "Fashion & Clothing",
-        city: "London",
-        postcode: "SE4 1UZ",
-        country: "Cameroon",
-        featured: true
-    },
-    {
-        name: "Mogadishu Money Transfer",
-        description: "Fast and secure money transfer services to Somalia and East Africa",
-        category: "Financial Services",
-        city: "London",
-        postcode: "E1 4NS",
-        country: "Somalia",
-        featured: true
-    },
-    {
-        name: "Kampala Rolex Stand",
-        description: "Authentic Ugandan rolex (chapati rolls) and street food",
-        category: "Restaurant",
-        city: "London",
-        postcode: "E8 2DP",
-        country: "Uganda",
-        featured: true
-    },
-    {
-        name: "Harare Hair Extensions",
-        description: "Premium hair extensions, wigs, and African hair products",
-        category: "Beauty & Personal Care",
-        city: "London",
-        postcode: "SE15 2RZ",
-        country: "Zimbabwe",
-        featured: true
-    },
-    {
-        name: "Banku & Tilapia Restaurant",
-        description: "Traditional Ghanaian dishes including banku, tilapia, and kelewele",
-        category: "Restaurant",
-        city: "Birmingham",
-        postcode: "B2 4QA",
-        country: "Ghana"
-    },
-    {
-        name: "Eko Market",
-        description: "African groceries, spices, and specialty foods from Nigeria and West Africa",
-        category: "Grocery & Food",
-        city: "Leeds",
-        postcode: "LS1 1UR",
-        country: "Nigeria"
-    },
-    {
-        name: "Ashanti Beauty Salon",
-        description: "Hair braiding, African hair care, and beauty treatments",
-        category: "Beauty & Personal Care",
-        city: "Glasgow",
-        postcode: "G1 1RE",
-        country: "Ghana"
-    },
-    {
-        name: "Maasai Craft Gallery",
-        description: "Authentic Kenyan crafts, sculptures, and traditional artwork",
-        category: "Arts & Crafts",
-        city: "London",
-        postcode: "W1F 8NH",
-        country: "Kenya"
-    },
-    {
-        name: "Ethiopian Coffee House",
-        description: "Traditional Ethiopian coffee ceremony and premium coffee beans",
-        category: "Food & Beverage",
-        city: "Glasgow",
-        postcode: "G2 4JR",
-        country: "Ethiopia"
-    },
-    {
-        name: "Ubuntu IT Solutions",
-        description: "IT consulting, web development, and digital services",
-        category: "Technology",
-        city: "London",
-        postcode: "EC2A 3AY",
-        country: "South Africa"
-    },
-    {
-        name: "Johannesburg Gems",
-        description: "South African diamonds, jewelry, and precious stones",
-        category: "Jewelry & Accessories",
-        city: "Manchester",
-        postcode: "M6 8HD",
-        country: "South Africa"
-    },
-    {
-        name: "Safari Hair Studio",
-        description: "Specialized in natural hair care and African hairstyles",
-        category: "Beauty & Personal Care",
-        city: "Birmingham",
-        postcode: "B3 2TA",
-        country: "Kenya"
-    },
-    {
-        name: "Kenyan Spice Market",
-        description: "Authentic Kenyan spices, tea, and specialty food products",
-        category: "Grocery & Food",
-        city: "Manchester",
-        postcode: "M4 1EG",
-        country: "Kenya"
-    },
-    {
-        name: "Habesha Cultural Center",
-        description: "Ethiopian cultural events, language classes, and community services",
-        category: "Education & Culture",
-        city: "Manchester",
-        postcode: "M5 3EQ",
-        country: "Ethiopia"
-    },
-    {
-        name: "Rooibos Tea Company",
-        description: "Premium South African rooibos tea and herbal blends",
-        category: "Food & Beverage",
-        city: "Bristol",
-        postcode: "BS1 4DJ",
-        country: "South Africa"
-    },
-    {
-        name: "Ghana Connect Services",
-        description: "Money transfer, travel booking, and visa assistance services",
-        category: "Financial Services",
-        city: "London",
-        postcode: "SW9 8EF",
-        country: "Ghana"
-    },
-    {
-        name: "Dakar Drumming School",
-        description: "Traditional West African drumming lessons and cultural workshops",
-        category: "Education & Culture",
-        city: "London",
-        postcode: "SW2 1JF",
-        country: "Senegal",
-        featured: true
-    },
-    {
-        name: "Abidjan Chocolate",
-        description: "Premium Ivorian cocoa products and artisanal chocolates",
-        category: "Food & Beverage",
-        city: "London",
-        postcode: "W3 6UG",
-        country: "Ivory Coast",
-        featured: true
-    },
-    {
-        name: "Bamako Music Store",
-        description: "Traditional West African instruments, kora, djembe, and music lessons",
-        category: "Music & Instruments",
-        city: "London",
-        postcode: "N15 4ND",
-        country: "Mali",
-        featured: true
-    },
-    {
-        name: "Freetown Diamond Exchange",
-        description: "Ethical diamond trading and Sierra Leonean precious stones",
-        category: "Jewelry & Accessories",
-        city: "London",
-        postcode: "EC1V 2NX",
-        country: "Sierra Leone",
-        featured: true
-    }
-];
+let products = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-let filteredBusinesses = [...businesses];
-
-// Country flag emojis
-const countryFlags = {
-    'Nigeria': '🇳🇬',
-    'Ghana': '🇬🇭',
-    'Kenya': '🇰🇪',
-    'Ethiopia': '🇪🇹',
-    'South Africa': '🇿🇦',
-    'Somalia': '🇸🇴',
-    'Uganda': '🇺🇬',
-    'Tanzania': '🇹🇿',
-    'Rwanda': '🇷🇼',
-    'Cameroon': '🇨🇲',
-    'Senegal': '🇸🇳',
-    'Mali': '🇲🇱',
-    'Burkina Faso': '🇧🇫',
-    'Ivory Coast': '🇨🇮',
-    'Zimbabwe': '🇿🇼',
-    'Zambia': '🇿🇲',
-    'Botswana': '🇧🇼',
-    'Namibia': '🇳🇦',
-    'Mozambique': '🇲🇿',
-    'Madagascar': '🇲🇬',
-    'Mauritius': '🇲🇺',
-    'Seychelles': '🇸🇨'
-};
-
-// Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
-    displayBusinesses(businesses.filter(b => b.featured));
+    loadProducts();
+    updateCartUI();
     
-    // Add event listeners for real-time search
-    document.getElementById('searchInput').addEventListener('input', searchBusinesses);
-    document.getElementById('cityFilter').addEventListener('change', searchBusinesses);
-    document.getElementById('categoryFilter').addEventListener('change', searchBusinesses);
+    document.getElementById('searchInput').addEventListener('input', filterProducts);
+    document.getElementById('categoryFilter').addEventListener('change', filterProducts);
+    document.getElementById('locationFilter').addEventListener('change', filterProducts);
 });
 
-// Display businesses
-function displayBusinesses(businessesToShow) {
-    const businessGrid = document.getElementById('businessGrid');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    
-    // Hide loading spinner
-    loadingSpinner.style.display = 'none';
-    
-    if (businessesToShow.length === 0) {
-        businessGrid.innerHTML = '<div class="no-results">No businesses found matching your criteria.</div>';
-        return;
+async function loadProducts() {
+    try {
+        const response = await fetch('/api/products');
+        products = await response.json();
+        displayProducts(products);
+    } catch (error) {
+        console.error('Failed to load products');
     }
+}
+
+async function filterProducts() {
+    const search = document.getElementById('searchInput').value;
+    const category = document.getElementById('categoryFilter').value;
+    const location = document.getElementById('locationFilter').value;
     
-    businessGrid.innerHTML = businessesToShow.map(business => `
-        <div class="business-card">
-            <div class="business-image">
-                ${countryFlags[business.country] || '🏪'}
-            </div>
-            <div class="business-info">
-                <div class="business-name">${business.name}</div>
-                <div class="business-category">${business.category}</div>
-                <div class="business-description">${business.description}</div>
-                <div class="business-location">
-                    📍 ${business.city}, ${business.postcode}
-                </div>
-                <div class="business-country">${business.country}</div>
+    const params = new URLSearchParams();
+    if (search) params.append('search', search);
+    if (category !== 'all') params.append('category', category);
+    if (location !== 'all') params.append('location', location);
+    
+    try {
+        const response = await fetch(`/api/products?${params}`);
+        const filtered = await response.json();
+        displayProducts(filtered);
+    } catch (error) {
+        console.error('Failed to filter products');
+    }
+}
+
+function displayProducts(productsToShow) {
+    const grid = document.getElementById('productGrid');
+    const count = document.getElementById('productCount');
+    
+    count.textContent = `${productsToShow.length} products`;
+    
+    grid.innerHTML = productsToShow.map(product => `
+        <div class="product-card">
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-info">
+                <div class="product-name">${product.name}</div>
+                <div class="product-seller">by ${product.seller}</div>
+                <div class="product-location">📍 ${product.location}, ${product.country}</div>
+                <div class="product-rating">⭐ ${product.rating} rating</div>
+                <div class="product-price">£${product.price}</div>
+                <button class="add-to-cart" onclick="addToCart('${product.id}')">
+                    Add to Cart
+                </button>
             </div>
         </div>
     `).join('');
 }
 
-// Search and filter businesses
-function searchBusinesses() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const cityFilter = document.getElementById('cityFilter').value;
-    const categoryFilter = document.getElementById('categoryFilter').value;
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
     
-    filteredBusinesses = businesses.filter(business => {
-        const matchesSearch = !searchTerm || 
-            business.name.toLowerCase().includes(searchTerm) ||
-            business.description.toLowerCase().includes(searchTerm) ||
-            business.category.toLowerCase().includes(searchTerm) ||
-            business.country.toLowerCase().includes(searchTerm);
-            
-        const matchesCity = !cityFilter || business.city === cityFilter;
-        const matchesCategory = !categoryFilter || business.category === categoryFilter;
-        
-        return matchesSearch && matchesCity && matchesCategory;
-    });
+    const existingItem = cart.find(item => item.id === productId);
     
-    displayBusinesses(filteredBusinesses);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
 }
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Add some interactivity
-function showAllBusinesses() {
-    displayBusinesses(businesses);
-    document.getElementById('businesses').scrollIntoView({ behavior: 'smooth' });
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    displayCart();
 }
 
-// Add click event to show all businesses when clicking on stats
-document.addEventListener('DOMContentLoaded', function() {
-    const stats = document.querySelectorAll('.stat');
-    stats.forEach(stat => {
-        stat.addEventListener('click', showAllBusinesses);
-        stat.style.cursor = 'pointer';
-    });
-});
+function updateQuantity(productId, change) {
+    const item = cart.find(item => item.id === productId);
+    if (!item) return;
+    
+    item.quantity += change;
+    
+    if (item.quantity <= 0) {
+        removeFromCart(productId);
+        return;
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    displayCart();
+}
+
+function updateCartUI() {
+    const cartCount = document.getElementById('cartCount');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+}
+
+function toggleCart() {
+    const modal = document.getElementById('cartModal');
+    const isVisible = modal.style.display === 'block';
+    
+    if (isVisible) {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'block';
+        displayCart();
+    }
+}
+
+function displayCart() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Your cart is empty</p>';
+        cartTotal.textContent = '0.00';
+        return;
+    }
+    
+    cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">£${item.price} each</div>
+            </div>
+            <div class="cart-item-controls">
+                <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                <span>${item.quantity}</span>
+                <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                <button class="qty-btn" onclick="removeFromCart('${item.id}')" style="margin-left: 0.5rem; color: red;">×</button>
+            </div>
+        </div>
+    `).join('');
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.textContent = total.toFixed(2);
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty');
+        return;
+    }
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    alert(`Thank you for your order! Total: £${total.toFixed(2)}\n\nThis is a demo - no payment processed.`);
+    
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    toggleCart();
+}
