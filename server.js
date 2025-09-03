@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const products = require('./data/products');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,30 +12,13 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/api/products', (req, res) => {
-    const { category, location, search } = req.query;
-    let filtered = products;
-    
-    if (category && category !== 'all') {
-        filtered = filtered.filter(p => p.category === category);
-    }
-    
-    if (location && location !== 'all') {
-        filtered = filtered.filter(p => p.location === location);
-    }
-    
-    if (search) {
-        const searchLower = search.toLowerCase();
-        filtered = filtered.filter(p => 
-            p.name.toLowerCase().includes(searchLower) ||
-            p.country.toLowerCase().includes(searchLower) ||
-            p.seller.toLowerCase().includes(searchLower)
-        );
-    }
-    
-    res.json(filtered);
+// Waitlist signup endpoint
+app.post('/api/signup', (req, res) => {
+    const { name, email, type } = req.body;
+    console.log(`New ${type} signup: ${name} - ${email}`);
+    res.json({ success: true, message: 'Successfully joined waitlist!' });
 });
 
 app.listen(PORT, () => {
-    console.log(`🛒 Gethings Store running on http://localhost:${PORT}`);
+    console.log(`🚀 Getthings landing page running on http://localhost:${PORT}`);
 });

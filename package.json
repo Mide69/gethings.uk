@@ -1,13 +1,17 @@
 {
-  "name": "gethings-store",
+  "name": "getthings-landing",
   "version": "1.0.0",
-  "description": "African Products E-commerce Store",
+  "description": "Getthings - Afro-Caribbean Platform for Scotland",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build": "echo 'No build step needed'"
   },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=14.x"
   }
 }
