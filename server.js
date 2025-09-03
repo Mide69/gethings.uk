@@ -27,6 +27,17 @@ app.get('/getthings\ hero.webp', (req, res) => {
     res.sendFile(path.join(__dirname, 'getthings hero.webp'));
 });
 
+// SEO files
+app.get('/sitemap.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile(path.join(__dirname, 'sitemap.xml'));
+});
+
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, 'robots.txt'));
+});
+
 // Waitlist signup endpoint
 app.post('/api/signup', (req, res) => {
     const { name, email, type } = req.body;
