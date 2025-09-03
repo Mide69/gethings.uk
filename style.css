@@ -64,34 +64,60 @@ body {
 }
 
 .btn-primary {
-    background: #2c5530;
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    padding: 1rem 2rem;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: 500;
-    transition: background 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary:hover {
-    background: #1f4024;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(44, 85, 48, 0.4);
+    background: linear-gradient(135deg, #1f4024 0%, #2c5530 100%);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
 }
 
 .btn-secondary {
-    background: transparent;
+    background: white;
     color: #2c5530;
     border: 2px solid #2c5530;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    padding: 1rem 2rem;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(44, 85, 48, 0.1);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-secondary:hover {
     background: #2c5530;
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(44, 85, 48, 0.1);
 }
 
 /* Hero */
@@ -257,19 +283,37 @@ body {
 }
 
 .tab-btn {
-    background: transparent;
-    border: 2px solid #2c5530;
-    color: #2c5530;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
+    background: white;
+    border: 2px solid #e9ecef;
+    color: #666;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.tab-btn:hover {
+    border-color: #2c5530;
+    color: #2c5530;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .tab-btn.active {
-    background: #2c5530;
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
     color: white;
+    border-color: #2c5530;
+    box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+}
+
+.tab-btn.active:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(44, 85, 48, 0.4);
 }
 
 .signup-form {
@@ -406,20 +450,30 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #2c5530;
+    background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
     color: white;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 10;
-    transition: background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .slider-btn:hover {
-    background: #1f4024;
+    background: linear-gradient(135deg, #1f4024 0%, #2c5530 100%);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(44, 85, 48, 0.4);
+}
+
+.slider-btn:active {
+    transform: translateY(-50%) scale(1.05);
 }
 
 .slider-btn.prev {
@@ -477,19 +531,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
     border-radius: 50%;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
     transition: all 0.3s ease;
     animation: pulse 2s infinite;
+    border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .whatsapp-float a:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    transform: scale(1.15);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+    background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
 }
 
 .whatsapp-float svg {
@@ -498,13 +554,13 @@ body {
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
     }
     50% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6), 0 0 0 15px rgba(37, 211, 102, 0.1);
     }
     100% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
     }
 }
 
@@ -671,6 +727,7 @@ body {
     .nav-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 0.75rem;
     }
     
     .hero h2 {
@@ -725,7 +782,22 @@ body {
     }
     
     .whatsapp-float a {
-        width: 55px;
-        height: 55px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .tab-btn {
+        padding: 0.875rem 2rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero-buttons {
+        gap: 0.75rem;
     }
 }

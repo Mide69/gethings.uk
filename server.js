@@ -4,12 +4,27 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(__dirname));
+// Serve static files
+app.use(express.static(path.join(__dirname)));
 app.use(express.json());
 
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Serve CSS
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'style.css'));
+});
+
+// Serve images
+app.get('/gethings\ logo.png', (req, res) => {
+    res.sendFile(path.join(__dirname, 'gethings logo.png'));
+});
+
+app.get('/getthings\ hero.webp', (req, res) => {
+    res.sendFile(path.join(__dirname, 'getthings hero.webp'));
 });
 
 // Waitlist signup endpoint
